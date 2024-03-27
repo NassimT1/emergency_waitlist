@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" type="text/css" href="../styles.css">
 </head>
 <body>
     <h1>Admin page</h1> <hr>
     <h2>Add patient</h2>
-    <form action="admin.php" method="post">
+    <form action="add_patient.php" method="post">
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" name="firstName" required><br><br>
 
