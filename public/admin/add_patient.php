@@ -1,39 +1,31 @@
 <?php
-// Include your database connection script
-require_once '../database/db_connect.php';
+require_once '../../database/db_connection.php';
 
-// Check if form is submitted
+// Generate a random 5 lettered code 
+function generateRandomCode($length = 5) {
+    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
     $severity = $_POST['severity'];
 
-    // Generate code
-    $code = ''; // Placeholder for the code
-    $generateCodeUrl = 'generate_code.php';
-    $response = file_get_contents($generateCodeUrl);
-    $data = json_decode($response, true);
-    if (isset($data['code'])) {
-        $code = $data['code'];
-    } else {
-        // Handle error in code generation
-        echo "Error generating code.";
-        exit;
-    }
-
-    // Capture the current time
+    $code = generateRandomCode();
     $arrivalTime = date('Y-m-d H:i:s');
 
-    // Insert data into database
-    $sql = "INSERT INTO patients (firstName, lastName, severity, code, arrivalTime) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO patient (code, firstName, lastName, severity, arrivalTime) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssis", $code, $firstName, $lastName, $severity,  $arrivalTime);
+    $stmt->bind_param("sssis", $code, $firstName, $lastName, $severity, $arrivalTime);
 
-    if ($stmt->execute()) {
-        echo "New patient added successfully.";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+    $stmt->execute();
+    echo $code;
 
     $stmt->close();
     $conn->close();

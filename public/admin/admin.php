@@ -5,11 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <link rel="stylesheet" type="text/css" href="../styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+<script>
+    $(document).ready(function() {
+        $('#patientForm').submit(function(e) {          
+            let formData = {
+                'firstName': $('input[name=firstName]').val(),
+                'lastName': $('input[name=lastName]').val(),
+                'severity': $('#severity').val()
+            };
+
+            // Ajax to add a patient to the database
+            $.ajax({
+                type: 'POST',
+                url: 'add_patient.php',
+                data: formData,
+                success: function(response) {
+                    alert("Added patient successfully." + "\n" + "Patient code: " + response); 
+                    $('input[name=firstName]').val('');
+                    $('input[name=lastName]').val('');
+                    $('#severity').val('');
+                }
+            });
+            return false;
+        });
+    });
+    </script>
     <h1>Admin page</h1> <hr>
     <h2>Add patient</h2>
-    <form action="add_patient.php" method="post">
+    <form id="patientForm" action="add_patient.php" method="post">
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" name="firstName" required><br><br>
 
@@ -33,6 +59,7 @@
 
         <input type="submit" value="Submit">
     </form>
+    <!-- View the queue -->
     <a href="admin_queue.php">
         <button class="button_1">View queue</button>
     </a><br>

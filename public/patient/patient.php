@@ -7,8 +7,19 @@
     <link rel="stylesheet" type="text/css" href="../styles.css">
 </head>
 <body>
+    <script>
+        // Clear forms once submitted 
+        document.addEventListener("DOMContentLoaded", function() {
+            var form = document.querySelector("form");
+            form.addEventListener("submit", function() {
+                setTimeout(function() { 
+                    form.reset();
+                }, 0);
+            });
+        });
+    </script>
     <h1>Patient page</h1> <hr>
-    <form action="patient.php" method="post">
+    <form action="patient_waitlist.php" method="post">
         <label for="Code">Code:</label>
         <input type="text" id="code" name="code" required><br><br>
 

@@ -1,25 +1,21 @@
 <?php
-// Include your database connection script
 require_once '../../database/db_connection.php';
 
-// Check if the request is an AJAX request
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['code'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['code']) && isset($_POST['lastName'])) {
     $code = $_POST['code'];
+    $lastName = $_POST['lastName'];
 
-    // Perform the SQL delete operation
-    $sql = "DELETE FROM patient WHERE code = ?";
+    // Delete patient using th code and lastName
+    $sql = "DELETE FROM patient WHERE code = ? AND lastName = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $code);
+    $stmt->bind_param("ss", $code, $lastName);
 
     if ($stmt->execute()) {
-        // Return a JSON response indicating success
         echo json_encode(['success' => true]);
     } else {
-        // Return a JSON response indicating failure
         echo json_encode(['success' => false]);
     }
 
-    // Close the statement and the database connection
     $stmt->close();
     $conn->close();
 }
