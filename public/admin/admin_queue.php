@@ -56,6 +56,7 @@
     <table id="patientQueue">
         <thead>
             <tr>
+                <th>Position</th>
                 <th>Code</th>
                 <th>First Name</th>
                 <th>Last Name</th>
@@ -71,10 +72,13 @@
             // Sort clients by arrival time
             $sql = "SELECT code, firstName, lastName, severity, arrivalTime FROM patient ORDER BY arrivalTime";
             $result = $conn->query($sql);
+            $position = 0;
 
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
+                    $position++;
                     echo '<tr id="row-' . $row["code"] . '">';
+                    echo '<td>' . $position . '</td>';
                     echo '<td>' . $row["code"] . '</td>';
                     echo '<td>' . $row["firstName"] . '</td>';
                     echo '<td>' . $row["lastName"] . '</td>';

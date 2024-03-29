@@ -33,10 +33,11 @@ th, td {
     border: 1px solid #000000; 
     padding: 8px; 
     text-align: left; 
+    background-color: #ffffff;
 }
 
 th {
-    background-color: #f2f2f2; 
+    background-color: #e7e5e5; 
     color: black; 
 }
 
@@ -57,7 +58,7 @@ th {
 }
 
 .grid-item {
-    background-color: #f2f2f2;
+    background-color: #ffffff;
     padding: 20px;
     font-size: 18px;
     text-align: center;
@@ -71,5 +72,6 @@ th {
 
 body {
     font-size: 1.4rem;
+    background-color: rgb(233, 240, 248);
 }
 

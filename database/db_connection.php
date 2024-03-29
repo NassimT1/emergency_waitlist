@@ -1,8 +1,14 @@
 <?php
 
 // Connection to database
-$conn = new mysqli('localhost', 'root', '', 'emergency_waitlist');
 
+$hostname = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'emergency_waitlist';
+
+// Create connection
+$conn = new mysqli($hostname, $username, $password, $database);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
