@@ -19,6 +19,7 @@
         });
     </script>
     <h1>Patient page</h1> <hr>
+    <h2>Please input your Code and Last Name</h2>
     <form action="patient_waitlist.php" method="post">
         <label for="Code">Code:</label>
         <input type="text" id="code" name="code" required><br><br>

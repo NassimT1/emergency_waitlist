@@ -17,6 +17,12 @@
                 'severity': $('#severity').val()
             };
 
+            // Check is severity is less than 1
+            if (formData.severity < 1) {
+                alert("Severity must be 1 or higher.");
+                return false; 
+            }
+
             // Ajax to add a patient to the database
             $.ajax({
                 type: 'POST',

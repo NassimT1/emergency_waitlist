@@ -3,10 +3,13 @@ h1 {
     font-size: 5rem;
     margin-top: 0px;
     margin-bottom: 0px;
+    text-decoration: underline;
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: 1.75rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
     text-decoration: underline;
 }
 
@@ -27,7 +30,7 @@ table {
 }
 
 th, td {
-    border: 1px solid #ddd; 
+    border: 1px solid #000000; 
     padding: 8px; 
     text-align: left; 
 }
@@ -41,6 +44,32 @@ th {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; 
+    height: 80vh; 
     gap: 200px; 
 }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.grid-item {
+    background-color: #f2f2f2;
+    padding: 20px;
+    font-size: 18px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.center {
+    text-align: center;
+    margin-top: 100px;
+}
+
+body {
+    font-size: 1.4rem;
+}
+

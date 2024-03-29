@@ -53,7 +53,6 @@
 </head>
 <body>
     <h1>Queue</h1><hr>
-    <p>Top 5 patients in the queue</p>
     <table id="patientQueue">
         <thead>
             <tr>
@@ -69,7 +68,8 @@
             <?php
             require_once '../../database/db_connection.php';
 
-            $sql = "SELECT code, firstName, lastName, severity, arrivalTime FROM patient ORDER BY arrivalTime ASC LIMIT 5";
+            // Sort clients by arrival time
+            $sql = "SELECT code, firstName, lastName, severity, arrivalTime FROM patient ORDER BY arrivalTime";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -81,9 +81,10 @@
                     echo '<td>' . $row["severity"] . '</td>';
                     echo '<td>' . $row["arrivalTime"] . '</td>';
                     echo '<td>';
+                    // Delete the patient after clicking the remove button
                     echo '<form action="delete_patient.php" method="post" id="deleteForm-' . $row["code"] . '">';
                     echo '<input type="hidden" name="code" value="' . $row["code"] . '">';
-                    echo '<input type="hidden" name="lastName" value="' . $row["lastName"] . '">'; // Add this line
+                    echo '<input type="hidden" name="lastName" value="' . $row["lastName"] . '">'; 
                     echo '<input type="button" value="Remove" onclick="removePatient(\'' . $row["code"] . '\', \'' . $row["lastName"] . '\')">';
                     echo '</form>';
                     echo '</td>';

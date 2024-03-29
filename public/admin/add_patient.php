@@ -1,8 +1,8 @@
 <?php
 require_once '../../database/db_connection.php';
 
-// Generate a random 5 lettered code 
-function generateRandomCode($length = 5) {
+// Generate a random 3 lettered code 
+function generateRandomCode($length = 3) {
     $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';

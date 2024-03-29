@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <h1>Home Page</h1> <hr>
+    <h1>Home Page (Hospital Triage)</h1> <hr>
     <div class="button-container">
         <a href="admin/admin.php">
             <button class="button">Admin Page</button>
